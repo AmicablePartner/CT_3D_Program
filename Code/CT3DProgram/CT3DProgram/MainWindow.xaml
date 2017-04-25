@@ -1,0 +1,28 @@
+﻿<Window x:Class="CT3DProgram.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CT3DProgram"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="800">
+    <Grid SizeChanged="Grid_SizeChanged" Unloaded="Grid_Unloaded" Name="baseLayout">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="26"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Menu x:Name="Menus" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Top" Background="LightSteelBlue" Height="30">
+            <Menu.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </ItemsPanelTemplate>
+            </Menu.ItemsPanel>     
+            <MenuItem Header="加载模型" Height="26" Width="90"  FontSize="12" Click="MenuItem_Click" HorizontalAlignment="Left" Background="LightGreen"/>
+            <MenuItem Header="加载手法数据" Height="26" Width="90" FontSize="12" Click="MenuItem_Click_Data" HorizontalAlignment="Left" Background="LightGreen"/>
+        </Menu>
+        <Canvas Name="BackWnd" Grid.Row="2" Grid.Column="1" Background="Black"/>
+    </Grid>
+</Window>

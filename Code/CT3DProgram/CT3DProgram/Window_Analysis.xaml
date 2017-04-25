@@ -1,0 +1,8 @@
+﻿<Window x:Class="CT3DProgram.Window_Analysis"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="数据压力曲线" Height="400" Width="900" Loaded="Window_Loaded" SizeChanged="WindowSize_Change">
+    <Grid>
+        <WindowsFormsHost Height="381" HorizontalAlignment="Left" Name="windowsFormsHost_Analysis" VerticalAlignment="Top" Width="878" />
+    </Grid>
+</Window>

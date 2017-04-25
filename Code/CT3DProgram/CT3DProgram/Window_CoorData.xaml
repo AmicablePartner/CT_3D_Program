@@ -1,0 +1,90 @@
+﻿<Window x:Class="CT3DProgram.Window_CoorData"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:WinFormHost="clr-namespace:System.Windows.Forms.Integration;assembly=WindowsFormsIntegration"
+        xmlns:WinFormControls="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+        Title="手法数据" Height="497" Width="953" Loaded="Window_Loaded" xmlns:my="http://schemas.microsoft.com/surface/2008" xmlns:my1="clr-namespace:CT3DProgram">
+    <Grid Height="446">
+        <ListBox Height="126" HorizontalAlignment="Left" Margin="13,0,0,95" Name="listBox_Data" VerticalAlignment="Bottom" Width="717" />
+        <Slider Height="23" HorizontalAlignment="Left" Margin="12,401,0,0" Name="slider_process" VerticalAlignment="Top" Width="715" ValueChanged="slider_process_ValueChanged" />
+        <Button Content="关闭曲线" Height="23" HorizontalAlignment="Left" Margin="797,299,0,0" Name="button_close" VerticalAlignment="Top" Width="59" Click="button_close_Click" />
+        <Button Content="结束" Height="23" HorizontalAlignment="Left" Margin="864,264,0,0" Name="button_end" VerticalAlignment="Top" Width="66" Click="button_end_Click" />
+        <Button Content="加载数据" Height="23" HorizontalAlignment="Left" Margin="798,231,0,0" Name="button_load" VerticalAlignment="Top" Width="58" Click="button_load_Click" />
+        <Button Content="开始" Height="23" HorizontalAlignment="Left" Margin="797,265,0,0" Name="button_begin" VerticalAlignment="Top" Width="59" Click="button_begin_Click" />
+        <Button Content="暂停" Height="23" HorizontalAlignment="Left" Margin="864,231,0,0" Name="button_pause" VerticalAlignment="Top" Width="66" Click="button_pause_Click" />
+        <Label Content="0/0" Height="28" HorizontalAlignment="Right" Margin="0,395,86,0" Name="label_text" VerticalAlignment="Top" Width="112" />
+        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,359,3,0" Name="textBox_input" VerticalAlignment="Top" Width="68" />
+        <Button Content="预览曲线" Height="23" HorizontalAlignment="Right" Margin="0,0,4,26" Name="button_jump" VerticalAlignment="Bottom" Width="66" Click="button_jump_Click" />
+        <Button Content="数据分析" Height="23" HorizontalAlignment="Left" Margin="797,137,0,0" Name="button_data" VerticalAlignment="Top" Width="74" Click="button_data_Click" />
+        <Label Content="X" Height="28" Margin="-8,2,912,0" Name="label1" VerticalAlignment="Top" />
+        <Label Content="平均值" Height="28" HorizontalAlignment="Left" Margin="10,3,0,0" Name="label8" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="72,5,0,0" Name="textBox_X_Avg" VerticalAlignment="Top" Width="93" />
+        <Label Content="峰值数" Height="28" HorizontalAlignment="Left" Margin="10,0,0,392" Name="label4" VerticalAlignment="Bottom" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="72,31,0,0" Name="textBox_X_Max" VerticalAlignment="Top" Width="93" />
+        <Label Content="谷值数" Height="28" HorizontalAlignment="Left" Margin="10,57,0,0" Name="label5" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="72,57,0,0" Name="textBox_X_Min" VerticalAlignment="Top" Width="93" />
+        <Label Content="峰值平均" Height="28" HorizontalAlignment="Left" Margin="10,84,0,0" Name="label6" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="72,84,0,0" Name="textBox_X_Max_Avg" VerticalAlignment="Top" Width="93" />
+        <Label Content="谷值平均" Height="28" HorizontalAlignment="Left" Margin="6,0,0,309" Name="label7" VerticalAlignment="Bottom" />
+        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,111,767,0" Name="textBox_X_Min_Avg" VerticalAlignment="Top" Width="93" />
+        <Label Content="Y" Height="28" HorizontalAlignment="Left" Margin="186,0,0,0" Name="label2" VerticalAlignment="Top" />
+        <Label Content="平均值" Height="28" HorizontalAlignment="Left" Margin="197,-1,0,0" Name="label13" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,1,591,0" Name="textBox_Y_Avg" VerticalAlignment="Top" Width="93" />
+        <Label Content="峰值数" Height="28" HorizontalAlignment="Left" Margin="195,0,0,391" Name="label9" VerticalAlignment="Bottom" />
+        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,29,591,0" Name="textBox_Y_Max" VerticalAlignment="Top" Width="93" />
+        <Label Content="谷值数" Height="28" HorizontalAlignment="Left" Margin="201,56,0,0" Name="label10" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="247,56,0,0" Name="textBox_Y_Min" VerticalAlignment="Top" Width="93" />
+        <Label Content="峰值平均" Height="28" HorizontalAlignment="Left" Margin="191,83,0,0" Name="label11" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="247,83,0,0" Name="textBox_Y_Max_Avg" VerticalAlignment="Top" Width="93" />
+        <Label Content="谷值平均" Height="28" HorizontalAlignment="Left" Margin="188,0,0,306" Name="label12" VerticalAlignment="Bottom" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="245,112,0,0" Name="textBox_Y_Min_Avg" VerticalAlignment="Top" Width="93" />
+        <Label Content="Z" Height="28" HorizontalAlignment="Left" Margin="370,0,0,0" Name="label3" VerticalAlignment="Top" />
+        <Label Content="平均值" Height="28" HorizontalAlignment="Left" Margin="382,0,0,0" Name="label18" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="432,2,0,0" Name="textBox_Z_Avg" VerticalAlignment="Top" Width="93" />
+        <Label Content="峰值数" Height="28" HorizontalAlignment="Left" Margin="383,0,0,391" Name="label14" VerticalAlignment="Bottom" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="432,28,0,0" Name="textBox_Z_Max" VerticalAlignment="Top" Width="93" />
+        <Label Content="谷值数" Height="28" HorizontalAlignment="Left" Margin="386,0,0,364" Name="label15" VerticalAlignment="Bottom" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="432,55,0,0" Name="textBox_Z_Min" VerticalAlignment="Top" Width="93" />
+        <Label Content="峰值平均" Height="28" HorizontalAlignment="Left" Margin="376,82,0,0" Name="label16" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="432,82,0,0" Name="textBox_Z_Max_Avg" VerticalAlignment="Top" Width="93" />
+        <Label Content="谷值平均" Height="28" HorizontalAlignment="Right" Margin="0,0,500,307" Name="label17" VerticalAlignment="Bottom" />
+        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,110,408,0" Name="textBox_Z_Min_Avg" VerticalAlignment="Top" Width="93" />
+        <Label Content="离散度" Height="28" HorizontalAlignment="Left" Margin="12,136,0,0" Name="label19" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="71,138,0,0" Name="textBox_X_BaseOffset" VerticalAlignment="Top" Width="94" />
+        <Label Content="离散度" Height="28" HorizontalAlignment="Left" Margin="198,136,0,0" Name="label20" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,138,591,0" Name="textBox_Y_BaseOffset" VerticalAlignment="Top" Width="92" />
+        <Label Content="离散度" Height="28" HorizontalAlignment="Left" Margin="382,138,0,0" Name="label21" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="431,138,0,0" Name="textBox_Z_BaseOffset" VerticalAlignment="Top" Width="94" />
+        <Button Content="教师列表" Height="23" HorizontalAlignment="Left" Margin="732,230,0,0" Name="button_Teach" VerticalAlignment="Top" Width="54" Click="button_Teach_Click" />
+        <Button Content="手法列表" Height="23" HorizontalAlignment="Left" Margin="732,262,0,0" Name="button_List" VerticalAlignment="Top" Width="54" Click="button_List_Click" />
+        <Button Content="所有手法" Height="23" HorizontalAlignment="Left" Margin="733,0,0,126" Name="button_All" VerticalAlignment="Bottom" Width="53" Click="button_All_Click" />
+        <ListBox Height="133" HorizontalAlignment="Left" Margin="529,-1,0,0" Name="listBox_AllData" VerticalAlignment="Top" Width="402" />
+        <Button Content="枚举数据" Height="23" HorizontalAlignment="Left" Margin="592,137,0,0" Name="button_AllData" VerticalAlignment="Top" Width="75" Click="button_AllData_Click" />
+        <Label Content="播放次数/秒" Height="28" HorizontalAlignment="Left" Margin="577,356,0,0" Name="label22" VerticalAlignment="Top" Width="90" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="663,359,0,0" Name="textBox_PlayNum" VerticalAlignment="Top" Width="86" />
+        <Label Content="图表曲线显示个数" Height="28" HorizontalAlignment="Left" Margin="10,356,0,0" Name="label23" VerticalAlignment="Top" Width="113" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="125,358,0,0" Name="textBox_GraphicNum" VerticalAlignment="Top" Width="92" />
+        <ComboBox Height="23" HorizontalAlignment="Right" Margin="0,358,524,0" Name="comboBox_List" VerticalAlignment="Top" Width="118" />
+        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,359,376,0" Name="textBox_step" VerticalAlignment="Top" Width="59" />
+        <Label Content="前进步长" Height="28" HorizontalAlignment="Left" Margin="423,357,0,0" Name="label24" VerticalAlignment="Top" Width="72" />
+        <Label Content="曲线样式" Height="28" HorizontalAlignment="Left" Margin="228,356,0,0" Name="label25" VerticalAlignment="Top" />
+        <Label Content="曲线预览" Height="28" HorizontalAlignment="Left" Margin="797,357,0,0" Name="label26" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="71,169,0,0" Name="textBox_XMax" VerticalAlignment="Top" Width="93" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="432,198,0,0" Name="textBox_ZMin" VerticalAlignment="Top" Width="93" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="432,169,0,0" Name="textBox_ZMax" VerticalAlignment="Top" Width="93" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="245,198,0,0" Name="textBox_YMin" VerticalAlignment="Top" Width="93" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="245,169,0,0" Name="textBox_YMax" VerticalAlignment="Top" Width="93" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="72,198,0,0" Name="textBox_XMin" VerticalAlignment="Top" Width="93" />
+        <Label Content="最大值" Height="28" HorizontalAlignment="Left" Margin="16,167,0,0" Name="label27" VerticalAlignment="Top" />
+        <Label Content="最小值" Height="28" HorizontalAlignment="Left" Margin="382,193,0,0" Name="label28" VerticalAlignment="Top" />
+        <Label Content="最大值" Height="28" HorizontalAlignment="Left" Margin="383,167,0,0" Name="label29" VerticalAlignment="Top" />
+        <Label Content="最小值" Height="28" HorizontalAlignment="Left" Margin="195,193,0,0" Name="label30" VerticalAlignment="Top" />
+        <Label Content="最大值" Height="28" HorizontalAlignment="Left" Margin="197,164,0,0" Name="label31" VerticalAlignment="Top" />
+        <Label Content="最小值" Height="28" HorizontalAlignment="Left" Margin="16,193,0,0" Name="label32" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="605,192,0,0" Name="textBox_F" VerticalAlignment="Top" Width="98" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="751,192,0,0" Name="textBox_S" VerticalAlignment="Top" Width="82" />
+        <Label Content="压力" Height="28" HorizontalAlignment="Left" Margin="559,190,0,0" Name="label33" VerticalAlignment="Top" />
+        <Label Content="面积" Height="28" HorizontalAlignment="Left" Margin="707,190,0,0" Name="label34" VerticalAlignment="Top" />
+        <Button Content="发送" Height="23" HorizontalAlignment="Right" Margin="0,192,8,0" Name="button_Send" VerticalAlignment="Top" Width="75" Click="button_Send_Click" />
+    </Grid>
+</Window>
