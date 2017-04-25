@@ -1,0 +1,109 @@
+float4 CalculateLight(float4 position,
+					float3 normal,
+					float3 lightColor,
+					float3 lightDirection,
+					float3 eyePosition,
+					float3 Ke,
+					float3 Kd,
+					float3 Ks,
+					float shininess)
+{
+	float3 P = position.xyz;
+	float3 N = normalize(normal);
+	float3 emissive = Ke;
+	float3 L = normalize(lightDirection);
+	float diffuseLight = max(dot(N,L),0);
+	float3 diffuse = Kd * lightColor * diffuseLight;
+	float3 V = normalize(eyePosition - P);
+	float3 H = normalize(L+V);
+	float specularLight = pow(max(dot(N,H),0),shininess);
+	if(diffuseLight <= 0) specularLight = 0;
+	float3 specular = Ks * lightColor * specularLight;
+	float4 color;
+	color.xyz = emissive + diffuse + specular;
+	color.w = 1;
+	return color;
+}
+
+void Main_VP(float4 position : POSITION,
+	float3 normal : NORMAL,
+	float2 Uv : TEXCOORD0,
+	out float2 oUv : TEXCOORD0,
+	out float4 oPosition : POSITION,
+	out float3 oVertexNormal : TEXCOORD1,
+	out float4 oWorldPosition : TEXCOORD2,
+	uniform float4x4 test,
+	uniform float4 CenterPos,
+	uniform float4 ForcePower)
+{
+	oUv = Uv;
+	oWorldPosition = mul(test, position);
+	oVertexNormal = normal;
+
+	float4 newPos = position;
+	float Power_x = ForcePower.x;
+	float Power_y = ForcePower.y;
+	float Power_z = ForcePower.z;
+	//float4中最后一位w用来设置范围的基数
+	float Power_w = ForcePower.w;
+	if(Power_w <= 0)
+	{
+		Power_w = 0.00001;
+	}
+	//计算垂直方向的力量的影响范围
+	float base_Range = Power_z * 3 + Power_w;
+
+	//计算当前位置与中心点的距离
+	float CurDis = distance(newPos, CenterPos);
+
+	float p = 999.9;
+	if (CurDis < base_Range)
+	{
+		//先细分成90度
+		float nScale = sin(CurDis / base_Range * 3.1415926 / 2);
+		newPos.y +=Power_z * 15 - Power_z * 15 * nScale;
+
+		//计算颜色的区域
+		//先计算中心当前最大的颜色值(最高现在定义为5)
+		float MaxPowerZ = 3.5;
+		p = Power_z / MaxPowerZ * (1-nScale);
+
+	}
+	oWorldPosition.w = p;
+	oPosition = mul(test, newPos);
+}
+
+void Main_FP(float2 Uv : TEXCOORD0,
+	float3 oVertexNormal : TEXCOORD1,
+	float4 oWorldPosition : TEXCOORD2,
+	uniform float4 LightSpecularColor,
+	uniform float4 LightPosition,
+	uniform float4 CameraPosition,
+	uniform float Shininess,
+	uniform sampler2D normalHeightMap,
+	uniform sampler2D ColorLevel,
+	out float4 oColor : COLOR)
+{
+	float CurScale = oWorldPosition.w;
+	if(CurScale <= 0)
+	{
+		CurScale = 0.00001;
+	}
+	float4 BaseColor = tex2D(normalHeightMap, Uv);
+	float4 LightColor = CalculateLight(oWorldPosition,
+									oVertexNormal,
+									LightSpecularColor.xyz,
+									LightPosition.xyz,
+									CameraPosition.xyz,
+									float3(0,0,0),
+									float3(1,1,1),
+									float3(1,1,1),
+									Shininess);
+	oColor = BaseColor * 0.7 + LightColor * 0.3;
+	oColor.a = 0.7;
+	if(CurScale < 999)
+	{
+		oColor = tex2D(ColorLevel, float2(1-CurScale, 0));
+		//oColor = float4(sin(oWorldPosition.w), 0, 0, sin(oWorldPosition.w));
+	}
+}

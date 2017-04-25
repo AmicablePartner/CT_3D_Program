@@ -1,0 +1,32 @@
+
+void main_vp(float4 position   : POSITION,
+			out float4 oPosition    : POSITION,
+            uniform float4 CenterPos,
+            uniform float4 ForcePower,
+            uniform float4x4 worldViewProj)
+{
+	float4 newPos = position;
+	float Power_x = ForcePower.x;
+	float Power_y = ForcePower.y;
+	float Power_z = ForcePower.z;
+	//计算垂直方向的力量的影响范围
+	double base_Range = Power_z * 0.2;
+	
+	//计算当前位置与中心点的距离
+	double CurDis = distance(newPos, CenterPos);
+
+	if(CurDis < base_Range)
+	{
+		newPos.y = - CurDis * 0.01;
+	}
+	oPosition = mul(worldViewProj,newPos);
+}
+
+void main_fp(float4 oPosition    : POSITION,
+			out float4 oColor : COLOR)
+{
+	oColor = float4(0,1,0,1);
+	{
+		oColor = float4(1,0,0,1);
+	}
+}

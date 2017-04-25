@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="gb2312"?>
+<Nodes ChangeShapePos="-3.5779,-18.11,-12.393">
+  <Node Name="肌肉" ResPath="1_1\股四头肌_细分.stl" Pos="0,0,0" Orientation="0,0,1,-0.000000162920685"/>
+</Nodes>

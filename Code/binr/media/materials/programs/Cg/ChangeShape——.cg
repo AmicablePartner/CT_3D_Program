@@ -1,0 +1,61 @@
+
+#include "Common.cg"
+
+float4 CenterPos;
+float4 ForcePower;
+float4x4 worldViewProj;
+
+float3 lightDiffuse;
+float3 lightSpecular;
+float4 scaleBias;
+sampler2D normalHeightMap;
+sampler2D diffuseMap;
+
+struct app2vertOffsetMapping
+{
+    float4 position	: POSITION;
+    float3 normal	: NORMAL;
+    float2 uv		: TEXCOORD0;
+    float3 tangent      : TANGENT;
+};
+
+struct vert2fragOffsetMapping
+{
+    float4 position     : POSITION;
+    float2 uv		: TEXCOORD0;
+	bool IsChange;
+};
+
+vert2fragOffsetMapping main_vp(app2vertOffsetMapping IN)
+{
+    vert2fragOffsetMapping OUT;
+
+	float4 newPos = IN.position;
+	float Power_x = ForcePower.x;
+	float Power_y = ForcePower.y;
+	float Power_z = ForcePower.z;
+	//计算垂直方向的力量的影响范围
+	double base_Range = Power_z * 0.05;
+	
+	//计算当前位置与中心点的距离
+	double CurDis = distance(IN.position.xyz,CenterPos.xyz);
+
+	if(CurDis < base_Range)
+	{
+		newPos.y = - CurDis * 0.05;
+		OUT.IsChange = 1;
+	}
+	OUT.position = mul(worldViewProj,newPos);
+	return OUT;
+}
+
+outPixel main_fp(vert2fragOffsetMapping IN)
+{
+    outPixel OUT;
+	OUT.colour = float4(0,1,0,1);
+	if(IN.IsChange == 1)
+	{
+		OUT.colour = float4(1,0,0,1);
+	}
+	return OUT;
+}
