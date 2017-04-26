@@ -135,20 +135,23 @@ void CDrawSTLMesh::InitSTLModel()
 	
 	for (size_t i = 0; i < m_STLNomalList.size() / 3; ++i)
 	{
-		m_ModelManual->position(m_STLPosList[i * 3 + 2]);
-		m_ModelManual->normal(-m_STLNomalList[i * 3 + 2]);
+		Ogre::Vector3 CurPos = m_STLPosList[i * 3 + 2];
+		m_ModelManual->position(CurPos);
+		m_ModelManual->normal(m_STLNomalList[i * 3 + 2]);
 		m_ModelManual->index(i * 3);
-		m_ModelManual->textureCoord(i * 3);
+		m_ModelManual->textureCoord(CurPos.x, CurPos.z);
 
-		m_ModelManual->position(m_STLPosList[i * 3 + 1]);
-		m_ModelManual->normal(-m_STLNomalList[i * 3 + 1]);
+		Ogre::Vector3 CurPos1 = m_STLPosList[i * 3 + 1];
+		m_ModelManual->position(CurPos1);
+		m_ModelManual->normal(m_STLNomalList[i * 3 + 1]);
 		m_ModelManual->index(i * 3 + 1);
-		m_ModelManual->textureCoord(i * 3 + 1);
+		m_ModelManual->textureCoord(CurPos1.x, CurPos1.z);
 
-		m_ModelManual->position(m_STLPosList[i * 3]);
-		m_ModelManual->normal(-m_STLNomalList[i * 3]);
+		Ogre::Vector3 CurPos2 = m_STLPosList[i * 3];
+		m_ModelManual->position(CurPos2);
+		m_ModelManual->normal(m_STLNomalList[i * 3]);
 		m_ModelManual->index(i * 3 + 2);
-		m_ModelManual->textureCoord(i * 3 + 2);
+		m_ModelManual->textureCoord(CurPos2.x, CurPos2.z);
 	}
 
 	m_ModelManual->end();
@@ -273,20 +276,23 @@ void CDrawSTLMesh::UpdateMesh(std::vector<Ogre::Vector3>& PosList, std::vector<O
 
 	for (size_t i = 0; i < NormalList.size() / 3; ++i)
 	{
-		m_ModelManual->position(PosList[i * 3 + 2]);
-		m_ModelManual->normal(-NormalList[i * 3 + 2]);
+		Ogre::Vector3 CurPos1 = PosList[i * 3 + 2];
+		m_ModelManual->position(CurPos1);
+		m_ModelManual->normal(NormalList[i * 3 + 2]);
 		m_ModelManual->index(i * 3);
-		m_ModelManual->textureCoord(i * 3);
+		m_ModelManual->textureCoord(CurPos1.x, CurPos1.z);
 
-		m_ModelManual->position(PosList[i * 3 + 1]);
-		m_ModelManual->normal(-NormalList[i * 3 + 1]);
+		Ogre::Vector3 CurPos2 = PosList[i * 3 + 1];
+		m_ModelManual->position(CurPos2);
+		m_ModelManual->normal(NormalList[i * 3 + 1]);
 		m_ModelManual->index(i * 3 + 1);
-		m_ModelManual->textureCoord(i * 3 + 1);
+		m_ModelManual->textureCoord(CurPos2.x, CurPos2.z);
 
-		m_ModelManual->position(PosList[i * 3]);
-		m_ModelManual->normal(-NormalList[i * 3]);
+		Ogre::Vector3 CurPos3 = PosList[i * 3];
+		m_ModelManual->position(CurPos3);
+		m_ModelManual->normal(NormalList[i * 3]);
 		m_ModelManual->index(i * 3 + 2);
-		m_ModelManual->textureCoord(i * 3 + 2);
+		m_ModelManual->textureCoord(CurPos3.x, CurPos3.z);
 	}
 
 	m_ModelManual->end();

@@ -43,7 +43,7 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="ZedGraph">
-      <HintPath>..\bin\ZedGraph.dll</HintPath>
+      <HintPath>..\binr\ZedGraph.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

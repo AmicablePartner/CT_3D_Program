@@ -7,7 +7,7 @@ material CT/3DBody
 
 			ambient 1 1 1 1
 			diffuse 1 1 1 1
-			specular 1 1 1 10
+			specular 0.5 0.5 0.5 60
 			//scene_blend alpha_blend
 			//depth_write off
 			cull_software none
@@ -16,7 +16,21 @@ material CT/3DBody
 			texture_unit
 			{
 				texture StlTex.png
-				scale 0.01 0.01
+				scale 1 1
+			}
+		}
+	}
+}
+
+material CT/GridFloor
+{
+	technique
+	{
+		pass
+		{
+			texture_unit
+			{
+				texture GirdPane.png
 			}
 		}
 	}

@@ -127,6 +127,10 @@ int CMain3DWnd::SetEnginWndPos(int x, int y, int w, int h)
 	{
 		MainRenderWnd->resize(w, h);
 	}
+	if (NULL != MainCamera)
+	{
+		MainCamera->setAspectRatio((Ogre::Real)MainViewPort->getActualWidth() / (Ogre::Real)MainViewPort->getActualHeight());
+	}
 	return 0;
 }
 
@@ -222,7 +226,7 @@ void CMain3DWnd::InitOgre(HWND hWnd)
 	opts["externalWindowHandle"] = Ogre::StringConverter::toString((unsigned int)hWnd);
 
 
-	MainRenderWnd = root->createRenderWindow("Ogre", 800, 600, false, &opts);
+	MainRenderWnd = root->createRenderWindow("Ogre", 800, 600, true, &opts);
 
 	InitRes();
 
@@ -258,7 +262,7 @@ void CMain3DWnd::InitOgre(HWND hWnd)
 
 	// create a floor entity, give it a material, and place it at the origin
 	Ogre::Entity* floor = CurSceneMgr->createEntity("Floor", "floor");
-	floor->setMaterialName("Examples/Rockwall");
+	floor->setMaterialName("CT/GridFloor");
 	floor->setCastShadows(false);
 	floor->getSubEntity(0)->getMaterial()->getTechnique(0)->getPass(0)->getTextureUnitState(0)->setTextureScale(0.05, 0.05);
 	CurSceneMgr->getRootSceneNode()->attachObject(floor);
@@ -562,6 +566,8 @@ BEGIN_MESSAGE_MAP(CMain3DWnd, CWnd)
 	ON_WM_RBUTTONUP()
 	ON_WM_TIMER()
 	ON_WM_KEYDOWN()
+	ON_WM_MBUTTONDOWN()
+	ON_WM_MBUTTONUP()
 END_MESSAGE_MAP()
 
 
@@ -612,8 +618,14 @@ void CMain3DWnd::OnMouseMove(UINT nFlags, CPoint point)
 	}
 	else if (m_LAndRButtonDownState.second)
 	{
-		MainCamera->pitch(Ogre::Degree(yDis * 0.0015f));
-		MainCamera->yaw(Ogre::Degree(xDis * 0.0015f));
+		MainCamera->pitch(Ogre::Degree(yDis * 0.05f));
+		MainCamera->yaw(Ogre::Degree(xDis * 0.05f));
+	}
+
+	if (m_MbuttonDownState)
+	{
+		OldCamPos += MainCamera->getRight() * xDis + MainCamera->getUp() * yDis;
+		MainCamera->setPosition(OldCamPos);
 	}
 	m_ButtonDownPos.x = point.x;
 	m_ButtonDownPos.y = point.y;
@@ -669,6 +681,46 @@ void CMain3DWnd::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 	{
 		m_ChangeShapePower.z += 0.1;
 	}
+	else if (nChar == 'A')
+	{
+		Ogre::Vector3 OldCamPos = MainCamera->getPosition();
+		OldCamPos -= MainCamera->getRight() * 2.0;
+		MainCamera->setPosition(OldCamPos);
+	}
+	else if(nChar == 'D')
+	{
+		Ogre::Vector3 OldCamPos = MainCamera->getPosition();
+		OldCamPos += MainCamera->getRight() * 2.0 ;
+		MainCamera->setPosition(OldCamPos);
+	}
+	else if(nChar == 'W')
+	{
+		Ogre::Vector3 OldCamPos = MainCamera->getPosition();
+		OldCamPos += MainCamera->getUp() * 2.0;
+		MainCamera->setPosition(OldCamPos);
+	}
+	else if(nChar == 'S')
+	{
+		Ogre::Vector3 OldCamPos = MainCamera->getPosition();
+		OldCamPos -= MainCamera->getUp() * 2.0;
+		MainCamera->setPosition(OldCamPos);
+	}
 
 	__super::OnKeyDown(nChar, nRepCnt, nFlags);
+}
+
+
+void CMain3DWnd::OnMButtonDown(UINT nFlags, CPoint point)
+{
+	m_MbuttonDownState = true;
+
+	__super::OnMButtonDown(nFlags, point);
+}
+
+
+void CMain3DWnd::OnMButtonUp(UINT nFlags, CPoint point)
+{
+	m_MbuttonDownState = false;
+
+	__super::OnMButtonUp(nFlags, point);
 }

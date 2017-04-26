@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CT3DProgram", "CT3DProgram\CT3DProgram.csproj", "{C6A14B0D-5AE4-46BB-A0EC-C514C94957E9}"
 EndProject
@@ -41,6 +41,7 @@ Global
 		{09759DBF-0DFE-45D7-91BD-D41AF663816F}.Debug|x86.ActiveCfg = Debug|Win32
 		{09759DBF-0DFE-45D7-91BD-D41AF663816F}.Debug|x86.Build.0 = Debug|Win32
 		{09759DBF-0DFE-45D7-91BD-D41AF663816F}.Release|Any CPU.ActiveCfg = Release|Win32
+		{09759DBF-0DFE-45D7-91BD-D41AF663816F}.Release|Any CPU.Build.0 = Release|Win32
 		{09759DBF-0DFE-45D7-91BD-D41AF663816F}.Release|x64.ActiveCfg = Release|x64
 		{09759DBF-0DFE-45D7-91BD-D41AF663816F}.Release|x64.Build.0 = Release|x64
 		{09759DBF-0DFE-45D7-91BD-D41AF663816F}.Release|x86.ActiveCfg = Release|Win32
@@ -51,6 +52,7 @@ Global
 		{A130B599-6288-408D-905C-8E4B6DA3907F}.Debug|x86.ActiveCfg = Debug|Win32
 		{A130B599-6288-408D-905C-8E4B6DA3907F}.Debug|x86.Build.0 = Debug|Win32
 		{A130B599-6288-408D-905C-8E4B6DA3907F}.Release|Any CPU.ActiveCfg = Release|Win32
+		{A130B599-6288-408D-905C-8E4B6DA3907F}.Release|Any CPU.Build.0 = Release|Win32
 		{A130B599-6288-408D-905C-8E4B6DA3907F}.Release|x64.ActiveCfg = Release|x64
 		{A130B599-6288-408D-905C-8E4B6DA3907F}.Release|x64.Build.0 = Release|x64
 		{A130B599-6288-408D-905C-8E4B6DA3907F}.Release|x86.ActiveCfg = Release|Win32

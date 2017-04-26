@@ -72,6 +72,8 @@ protected:
 	//鼠标状态
 	std::pair<bool, bool>	m_LAndRButtonDownState;
 
+	bool	m_MbuttonDownState;
+
 	//鼠标按下时的坐标
 	Ogre::Vector2	m_ButtonDownPos;
 
@@ -112,5 +114,7 @@ public:
 	afx_msg void OnRButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
+	afx_msg void OnMButtonDown(UINT nFlags, CPoint point);
+	afx_msg void OnMButtonUp(UINT nFlags, CPoint point);
 };
 

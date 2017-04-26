@@ -71,7 +71,8 @@ namespace CT3DProgram
 			IntPtr hwnd = new WindowInteropHelper(this).Handle;
 
             m_3DRenderWnd = new _3DRenderWindow(m_3DInterface, this);
-            m_3DRenderWnd.Show();
+
+            m_3DRenderWnd.Visibility = Visibility.Visible;
             m_3DRenderWnd.Owner = this;
             ChangWindowSize();
             CompositionTarget.Rendering += new EventHandler(WindowPositionChange);
